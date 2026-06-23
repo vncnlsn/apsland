@@ -40,10 +40,20 @@
        HERO — static image (swap src for video later)
   ════════════════════════════════════════ -->
   <section class="hero" aria-label="APS introduction">
-    <div class="hero-top-fade" aria-hidden="true"></div>
-    <div class="hero-bottom-fade" aria-hidden="true"></div>
-    <img src="assets/herotest.jpg" alt="" class="hero-img" aria-hidden="true" />
-  </section>
+  <div class="hero-top-fade" aria-hidden="true"></div>
+  <div class="hero-bottom-fade" aria-hidden="true"></div>
+
+  <video
+    class="hero-video"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="auto"
+  >
+    <source src="assets/hero_video.mp4" type="video/mp4">
+  </video>
+</section>
 
   <!-- ═══════════════════════════════════════
        MISSION STATEMENT — opening sentence
