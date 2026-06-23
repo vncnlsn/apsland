@@ -41,6 +41,7 @@ body {
   background: var(--white);
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+  padding-top: var(--nav-h);
 }
 img { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
