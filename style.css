@@ -239,7 +239,7 @@ ul { list-style: none; }
    ═════════════════════════════════════════ */
 .mission {
   background: var(--white);
-  padding-top: 2.25rem;
+  padding-top: 2.5rem;
   padding-bottom: 4rem;
   text-align: center;
 }
@@ -253,17 +253,14 @@ ul { list-style: none; }
 
 .mission-statement {
   font-family: var(--font-display);
-  font-size: clamp(1.8rem, 2.7vw, 3rem);
+  font-size: clamp(2rem, 3vw, 3.25rem);
   font-weight: 400;
-  line-height: 1.22;
+  line-height: 1.12;
   color: var(--navy);
-  letter-spacing: -0.01em;
-
-  white-space: normal;
-
+  letter-spacing: -0.02em;
   max-width: 1200px;
-  margin: 0 auto 1.5rem;
-  text-align: center;
+  margin: 0 auto;
+  text-wrap: balance;
 }
 
 .btn-mission {
