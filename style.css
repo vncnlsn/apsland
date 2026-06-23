@@ -126,9 +126,7 @@ ul { list-style: none; }
 .logo-img {
   height: 46px;
   width: auto;
-  /* Over hero (white links state): keep logo as-is if it's light;
-     on scrolled white nav: logo should be its natural color.
-     If your logo is white/light, add filter: invert when scrolled. */
+  filter: brightness(0) invert(1);
   transition: filter var(--transition-slow);
 }
 
@@ -157,6 +155,10 @@ ul { list-style: none; }
 }
 .nav-wrap.scrolled .nav-links a:hover {
   color: var(--crimson);
+}
+
+.nav-wrap.scrolled .logo-img {
+  filter: none;
 }
 
 /* Request Consultation button — white outline over hero */
@@ -261,7 +263,7 @@ ul { list-style: none; }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center center;
+  object-position: center 20%;
   display: block;
   z-index: 1;
 }
@@ -275,13 +277,6 @@ ul { list-style: none; }
   padding-top: 1.75rem;
   padding-bottom: 1.5rem;
   text-align: center;
-}
-
-.mission-rule {
-  width: 48px;
-  height: 2px;
-  background: var(--crimson);
-  margin: 0 auto 1.5rem;
 }
 
 .mission-statement {
