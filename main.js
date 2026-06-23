@@ -81,42 +81,40 @@ fadeTargets.forEach(el => observer.observe(el));
 
 /* ── APS Reach Map ──────────────────────── */
 const apsMap = {
-
-  // State data — set real values when ready
   activeStates: {
-    OR: { name: 'Oregon',        firstYear: null, counties: null, parcels: null },
-    CA: { name: 'California',    firstYear: null, counties: null, parcels: null },
-    NV: { name: 'Nevada',        firstYear: null, counties: null, parcels: null },
-    ID: { name: 'Idaho',         firstYear: null, counties: null, parcels: null },
-    MT: { name: 'Montana',       firstYear: null, counties: null, parcels: null },
-    ND: { name: 'North Dakota',  firstYear: null, counties: null, parcels: null },
-    SD: { name: 'South Dakota',  firstYear: null, counties: null, parcels: null },
-    WY: { name: 'Wyoming',       firstYear: null, counties: null, parcels: null },
-    UT: { name: 'Utah',          firstYear: null, counties: null, parcels: null },
-    CO: { name: 'Colorado',      firstYear: null, counties: null, parcels: null },
-    AZ: { name: 'Arizona',       firstYear: null, counties: null, parcels: null },
-    NM: { name: 'New Mexico',    firstYear: null, counties: null, parcels: null },
-    TX: { name: 'Texas',         firstYear: null, counties: null, parcels: null },
-    OK: { name: 'Oklahoma',      firstYear: null, counties: null, parcels: null },
-    LA: { name: 'Louisiana',     firstYear: null, counties: null, parcels: null },
-    KS: { name: 'Kansas',        firstYear: null, counties: null, parcels: null },
-    MO: { name: 'Missouri',      firstYear: null, counties: null, parcels: null },
-    AR: { name: 'Arkansas',      firstYear: null, counties: null, parcels: null },
-    PA: { name: 'Pennsylvania',  firstYear: null, counties: null, parcels: null },
-    OH: { name: 'Ohio',          firstYear: null, counties: null, parcels: null },
+    OR: { name: 'Oregon', firstYear: null, counties: null, parcels: null },
+    CA: { name: 'California', firstYear: null, counties: null, parcels: null },
+    NV: { name: 'Nevada', firstYear: null, counties: null, parcels: null },
+    ID: { name: 'Idaho', firstYear: null, counties: null, parcels: null },
+    MT: { name: 'Montana', firstYear: null, counties: null, parcels: null },
+    ND: { name: 'North Dakota', firstYear: null, counties: null, parcels: null },
+    SD: { name: 'South Dakota', firstYear: null, counties: null, parcels: null },
+    WY: { name: 'Wyoming', firstYear: null, counties: null, parcels: null },
+    UT: { name: 'Utah', firstYear: null, counties: null, parcels: null },
+    CO: { name: 'Colorado', firstYear: null, counties: null, parcels: null },
+    AZ: { name: 'Arizona', firstYear: null, counties: null, parcels: null },
+    NM: { name: 'New Mexico', firstYear: null, counties: null, parcels: null },
+    TX: { name: 'Texas', firstYear: null, counties: null, parcels: null },
+    OK: { name: 'Oklahoma', firstYear: null, counties: null, parcels: null },
+    LA: { name: 'Louisiana', firstYear: null, counties: null, parcels: null },
+    KS: { name: 'Kansas', firstYear: null, counties: null, parcels: null },
+    MO: { name: 'Missouri', firstYear: null, counties: null, parcels: null },
+    AR: { name: 'Arkansas', firstYear: null, counties: null, parcels: null },
+    PA: { name: 'Pennsylvania', firstYear: null, counties: null, parcels: null },
+    OH: { name: 'Ohio', firstYear: null, counties: null, parcels: null },
     WV: { name: 'West Virginia', firstYear: null, counties: null, parcels: null },
-    KY: { name: 'Kentucky',      firstYear: null, counties: null, parcels: null },
-    TN: { name: 'Tennessee',     firstYear: null, counties: null, parcels: null },
-    NE: { name: 'Nebraska',      firstYear: null, counties: null, parcels: null },
-    IL: { name: 'Illinois',      firstYear: null, counties: null, parcels: null },
-    IA: { name: 'Iowa',          firstYear: null, counties: null, parcels: null },
-    IN: { name: 'Indiana',       firstYear: null, counties: null, parcels: null },
+    KY: { name: 'Kentucky', firstYear: null, counties: null, parcels: null },
+    TN: { name: 'Tennessee', firstYear: null, counties: null, parcels: null },
+    NE: { name: 'Nebraska', firstYear: null, counties: null, parcels: null },
+    IL: { name: 'Illinois', firstYear: null, counties: null, parcels: null },
+    IA: { name: 'Iowa', firstYear: null, counties: null, parcels: null },
+    IN: { name: 'Indiana', firstYear: null, counties: null, parcels: null },
+    AK: { name: 'Alaska', firstYear: null, counties: null, parcels: null },
+    HI: { name: 'Hawaii', firstYear: null, counties: null, parcels: null },
   },
 
-  hiddenStates: ['AK', 'HI'],
-
   fmt(val) {
-    return (val !== null && val !== undefined) ? String(val) : null;
+    return val !== null && val !== undefined ? String(val) : null;
   },
 
   setStat(id, val) {
@@ -136,11 +134,6 @@ const apsMap = {
     const mapEl = document.getElementById('aps-map');
     if (!mapEl) return;
 
-    this.hiddenStates.forEach(id => {
-      const el = mapEl.querySelector('#' + id);
-      if (el) el.classList.add('state--hidden');
-    });
-
     Object.keys(this.activeStates).forEach(id => {
       const el = mapEl.querySelector('#' + id);
       if (!el) return;
@@ -155,21 +148,22 @@ const apsMap = {
     const data = this.activeStates[id];
     if (!data) return;
 
-    const mapEl   = document.getElementById('aps-map');
+    const mapEl = document.getElementById('aps-map');
     const stateEl = document.getElementById(id);
-    const panel   = document.getElementById('info-panel');
+    const panel = document.getElementById('info-panel');
     const content = document.getElementById('panel-content');
 
-    if (mapEl)   mapEl.classList.add('has-hover');
+    if (mapEl) mapEl.classList.add('has-hover');
     if (stateEl) stateEl.classList.add('state--hover');
     if (content) content.style.opacity = '0';
 
     setTimeout(() => {
-      document.getElementById('panel-state').textContent = data.name.toUpperCase();
+      const stateLabel = document.getElementById('panel-state');
+      if (stateLabel) stateLabel.textContent = data.name.toUpperCase();
       this.setStat('stat-first-year', data.firstYear);
-      this.setStat('stat-counties',   data.counties);
-      this.setStat('stat-parcels',    data.parcels);
-      if (panel)   panel.classList.add('has-state');
+      this.setStat('stat-counties', data.counties);
+      this.setStat('stat-parcels', data.parcels);
+      if (panel) panel.classList.add('has-state');
       if (content) content.style.opacity = '';
     }, 110);
   },
@@ -181,14 +175,14 @@ const apsMap = {
     document.querySelectorAll('#aps-map .state--hover')
       .forEach(el => el.classList.remove('state--hover'));
 
-    const panel   = document.getElementById('info-panel');
+    const panel = document.getElementById('info-panel');
     const content = document.getElementById('panel-content');
 
     if (content) content.style.opacity = '0';
     setTimeout(() => {
       const stateLabel = document.getElementById('panel-state');
       if (stateLabel) stateLabel.textContent = '';
-      if (panel)   panel.classList.remove('has-state');
+      if (panel) panel.classList.remove('has-state');
       if (content) content.style.opacity = '';
     }, 110);
   },
