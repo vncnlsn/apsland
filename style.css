@@ -312,9 +312,16 @@ ul { list-style: none; }
   margin-top: 0;
 }
 
+.continuation-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
 .continuation-actions--below {
   margin-top: 2.5rem;
-  justify-content: center;
 }
 
 .btn-continuation-primary {
@@ -358,8 +365,9 @@ ul { list-style: none; }
 }
 
 .service-card {
-  background: var(--off-white);
+  background: #ffffff;
   padding: clamp(2rem, 4vw, 3rem);
+  border: 1px solid rgba(0,0,0,0.05);
   transition: background var(--transition);
 }
 .service-card:hover { background: var(--white); }
