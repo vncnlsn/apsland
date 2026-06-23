@@ -220,8 +220,8 @@ ul { list-style: none; }
   position: relative;
   width: 100%;
   /* Full viewport — nav is layered on top transparently */
-  height: 100vh;
-  min-height: 560px;
+  height: 72vh;
+  min-height: 500px;
   overflow: hidden;
   background: var(--navy-dark);
 }
