@@ -137,10 +137,13 @@ const apsMap = {
     Object.keys(this.activeStates).forEach(id => {
       const el = mapEl.querySelector('#' + id);
       if (!el) return;
-      el.classList.add('state--active');
+      el.classList.add('state--base');
       el.setAttribute('aria-hidden', 'true');
-      el.addEventListener('mouseenter', () => this.show(id));
-      el.addEventListener('mouseleave', () => this.clear());
+
+      el.addEventListener('pointerenter', () => this.show(id));
+      el.addEventListener('pointerleave', () => this.clear());
+      el.addEventListener('focus', () => this.show(id));
+      el.addEventListener('blur', () => this.clear());
     });
   },
 
@@ -154,6 +157,8 @@ const apsMap = {
     const content = document.getElementById('panel-content');
 
     if (mapEl) mapEl.classList.add('has-hover');
+    document.querySelectorAll('#aps-map .state--hover')
+      .forEach(el => el.classList.remove('state--hover'));
     if (stateEl) stateEl.classList.add('state--hover');
     if (content) content.style.opacity = '0';
 
@@ -165,7 +170,7 @@ const apsMap = {
       this.setStat('stat-parcels', data.parcels);
       if (panel) panel.classList.add('has-state');
       if (content) content.style.opacity = '';
-    }, 110);
+    }, 90);
   },
 
   clear() {
@@ -184,7 +189,7 @@ const apsMap = {
       if (stateLabel) stateLabel.textContent = '';
       if (panel) panel.classList.remove('has-state');
       if (content) content.style.opacity = '';
-    }, 110);
+    }, 90);
   },
 };
 
